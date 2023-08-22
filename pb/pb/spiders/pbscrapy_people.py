@@ -42,8 +42,8 @@ class PrivateBankScrapyInsights(CrawlSpider):
 
         yield {
             'url': response.url,
-            'name': [x.text for x in soup.select('h1[class*="jpm-wm-promotional-people-detail-hero__name"]')],
-            'jobTitle': [x.text for x in soup.select('span[class*="jpm-wm-promotional-people-detail-hero__title-detail"]')],
+            'name': [x.get_text(strip=True) for x in soup.select('h1[class*="jpm-wm-promotional-people-detail-hero__name"]')],
+            'jobTitle': [x.get_text(strip=True) for x in soup.select('span[class*="jpm-wm-promotional-people-detail-hero__title-detail"]')],
             'biography': str
             # 'pagecontent': str,
             # 'servicesIncluded': '#'.join([ x.text for x in soup.select('[class*="jpm-wm-general-serviceIcon__bounding-box-title"]')]),

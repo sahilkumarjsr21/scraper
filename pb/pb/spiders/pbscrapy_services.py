@@ -43,7 +43,7 @@ class PrivateBankScrapyInsights(CrawlSpider):
         yield {
             'url': response.url,
             'pagecontent': str,
-            'servicesIncluded': '#'.join([ x.text for x in soup.select('[class*="jpm-wm-general-serviceIcon__bounding-box-title"]')]),
-            'title':  [x.text for x in soup.select('[class*="-hero__title"], [class*="overview__title"]')]
+            'servicesIncluded': [ x.get_text(strip=True) for x in soup.select('[class*="jpm-wm-general-serviceIcon__bounding-box-title"]')],
+            'title':  [x.get_text(strip=True) for x in soup.select('[class*="-hero__title"], [class*="overview__title"]')]
         }
         
